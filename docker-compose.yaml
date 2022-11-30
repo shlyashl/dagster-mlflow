@@ -78,7 +78,7 @@ services:
       - -p
       - ${DAGSTER_PORT}
       - -w
-      - .dagster/workspace.yaml
+      - workspace.yaml
     container_name: dagit
     environment:
         PG_USER: ${PG_USER}
