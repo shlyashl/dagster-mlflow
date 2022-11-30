@@ -44,7 +44,7 @@ services:
       dockerfile: ./mlflow/Dockerfile
     container_name: mlflow
     environment:
-      - BACKEND=postgresql://${PG_USER}:${PG_PASSWORD}@mlops_db:${PG_PORT}/${MLFLOW_DB}
+      - BACKEND=postgresql://${PG_USER}:${PG_PASSWORD}@mlflow:${PG_PORT}/${MLFLOW_DB}
       - AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
       - ARTIFACTS=s3://${S3_BUCKET_NAME}
@@ -81,9 +81,9 @@ services:
       - workspace.yaml
     container_name: dagit
     environment:
-        MLOPS_DB_USER: ${PG_USER}
-        MLOPS_DB_PASSWORD: ${PG_PASSWORD}
-        MLOPS_DB_PORT: ${PG_PORT}
+        DB_USER: ${PG_USER}
+        DB_PASSWORD: ${PG_PASSWORD}
+        DB_PORT: ${PG_PORT}
         DAGSTER_DB: ${DAGSTER_DB}
     volumes:
       - ./dagster/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
@@ -108,9 +108,9 @@ services:
       - run
     container_name: dagster_daemons
     environment:
-        DB_USER: ${MLOPS_DB_USER}
-        DB_PASSWORD: ${MLOPS_DB_PASSWORD}
-        DB_PORT: ${MLOPS_DB_PORT}
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_PORT: ${DB_PORT}
         DAGSTER_DB: ${DAGSTER_DB}
     volumes:
       - ./params/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
