@@ -15,6 +15,7 @@ services:
       - POSTGRES_PASSWORD=${PG_PASSWORD}
     expose:
       - ${PG_PORT}
+    command: -p ${PG_PORT}
     networks:
       - deml
 
