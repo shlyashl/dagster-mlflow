@@ -44,7 +44,7 @@ services:
       dockerfile: ./mlflow/Dockerfile
     container_name: mlflow
     environment:
-      - BACKEND=postgresql://${PG_USER}:${PG_PASSWORD}@mlflow:${PG_PORT}/${MLFLOW_DB}
+      - BACKEND=postgresql://${PG_USER}:${PG_PASSWORD}@postgres:${PG_PORT}/${MLFLOW_DB}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - ARTIFACTS=s3://${AWS_BUCKET_NAME}
