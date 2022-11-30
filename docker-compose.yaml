@@ -3,6 +3,8 @@ version: '3.1'
 services:
   postgres:
     image: postgres:14
+    env_file:
+      - .env
     restart: always
     container_name: postgres
     volumes:
@@ -21,6 +23,8 @@ services:
 
   s3:
     image: minio/minio
+    env_file:
+      - .env
     restart: always
     container_name: s3
     ports:
@@ -37,6 +41,8 @@ services:
 
   mlflow:
     image: mlflow_server
+    env_file:
+      - .env
     restart: always
     build:
       context: .
@@ -80,6 +86,8 @@ services:
       - -w
       - workspace.yaml
     container_name: dagit
+    env_file:
+      - .env
     environment:
         DB_USER: ${PG_USER}
         DB_PASSWORD: ${PG_PASSWORD}
@@ -107,6 +115,8 @@ services:
       - dagster-daemon
       - run
     container_name: dagster_daemons
+    env_file:
+      - .env
     environment:
         DB_USER: ${DB_USER}
         DB_PASSWORD: ${DB_PASSWORD}
