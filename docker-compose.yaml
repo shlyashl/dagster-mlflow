@@ -9,7 +9,7 @@ services:
     container_name: postgres
     volumes:
       - ./postgres_storage:/var/lib/postgresql/data
-      - ./postgres/init.sh:/docker-entrypoint-initdb.d/db_init.sh
+      - ./postgres/init.sh:/docker-entrypoint-initdb.d/init.sh
     environment:
       - MLFLOW_DB=${MLFLOW_DB}
       - DAGSTER_DB=${DAGSTER_DB}
@@ -89,10 +89,10 @@ services:
     env_file:
       - .env
     environment:
-        DB_USER: ${PG_USER}
-        DB_PASSWORD: ${PG_PASSWORD}
-        DB_PORT: ${PG_PORT}
-        DAGSTER_DB: ${DAGSTER_DB}
+        PG_USER: ${PG_USER}
+        PG_PASSWORD: ${PG_PASSWORD}
+        PG_PORT: ${PG_PORT}
+        PGGSTER_DB: ${DAGSTER_DB}
     volumes:
       - ./dagster/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
       - ./dagster/dagster.yaml:/opt/dagster/dagster_home/dagster.yaml
@@ -118,9 +118,9 @@ services:
     env_file:
       - .env
     environment:
-        DB_USER: ${DB_USER}
-        DB_PASSWORD: ${DB_PASSWORD}
-        DB_PORT: ${DB_PORT}
+        PG_USER: ${PG_USER}
+        PG_PASSWORD: ${PG_PASSWORD}
+        PG_PORT: ${PG_PORT}
         DAGSTER_DB: ${DAGSTER_DB}
     volumes:
       - ./params/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
