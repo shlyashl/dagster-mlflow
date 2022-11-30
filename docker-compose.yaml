@@ -86,7 +86,6 @@ services:
         PG_PORT: ${PG_PORT}
         DAGSTER_DB: ${DAGSTER_DB}
     volumes:
-      - ./dagster/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
       - ./dagster/dagster.yaml:/opt/dagster/dagster_home/dagster.yaml
       - /var/run/docker.sock:/var/run/docker.sock
     expose:
@@ -113,7 +112,6 @@ services:
         PG_PORT: ${PG_PORT}
         DAGSTER_DB: ${DAGSTER_DB}
     volumes:
-      - ./dagster/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
       - ./dagster/dagster.yaml:/opt/dagster/dagster_home/dagster.yaml
       - /var/run/docker.sock:/var/run/docker.sock
     restart: on-failure
