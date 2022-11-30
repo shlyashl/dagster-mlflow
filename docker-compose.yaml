@@ -7,7 +7,7 @@ services:
     container_name: postgres
     volumes:
       - ./postgres_storage:/var/lib/postgresql/data
-      - ./postgres/init.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./postgres/db_init.sh:/docker-entrypoint-initdb.d/db_init.sh
     environment:
       - MLFLOW_DB=${MLFLOW_DB}
       - DAGSTER_DB=${DAGSTER_DB}
