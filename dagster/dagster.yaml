@@ -11,10 +11,10 @@ run_launcher:
   class: DockerRunLauncher
   config:
     env_vars:
-      - DB_USER
-      - DB_PASSWORD
+      - PG_USER
+      - PG_PASSWORD
       - DAGSTER_DB
-      - DB_PORT
+      - PG_PORT
     network: deml
     container_kwargs:
       auto_remove: True
@@ -27,13 +27,13 @@ run_storage:
     postgres_db:
       hostname: postgres
       username:
-        env: DB_USER
+        env: PG_USER
       password:
-        env: DB_PASSWORD
+        env: PG_PASSWORD
       db_name:
         env: DAGSTER_DB
       port:
-        env: DB_PORT
+        env: PG_PORT
 
 schedule_storage:
   module: dagster_postgres.schedule_storage
@@ -42,13 +42,13 @@ schedule_storage:
     postgres_db:
       hostname: postgres
       username:
-        env: DB_USER
+        env: PG_USER
       password:
-        env: DB_PASSWORD
+        env: PG_PASSWORD
       db_name:
         env: DAGSTER_DB
       port:
-        env: DB_PORT
+        env: PG_PORT
 
 event_log_storage:
   module: dagster_postgres.event_log
@@ -57,10 +57,10 @@ event_log_storage:
     postgres_db:
       hostname: postgres
       username:
-        env: DB_USER
+        env: PG_USER
       password:
-        env: DB_PASSWORD
+        env: PG_PASSWORD
       db_name:
         env: DAGSTER_DB
       port:
-        env: DB_PORT
+        env: PG_PORT
