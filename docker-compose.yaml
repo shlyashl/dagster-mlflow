@@ -40,6 +40,7 @@ services:
     restart: always
     build:
       context: .
+      network: host
       dockerfile: ./mlflow/Dockerfile
     container_name: mlflow
     environment:
@@ -68,6 +69,7 @@ services:
   dagit:
     build:
       context: .
+      network: host
       dockerfile: ./dagster/Dockerfile
     entrypoint:
       - dagit
@@ -99,6 +101,7 @@ services:
   dagster_daemons:
     build:
       context: .
+      network: host
       dockerfile: ./dagster/Dockerfile
     entrypoint:
       - dagster-daemon
