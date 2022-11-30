@@ -84,7 +84,7 @@ services:
         PG_USER: ${PG_USER}
         PG_PASSWORD: ${PG_PASSWORD}
         PG_PORT: ${PG_PORT}
-        PGGSTER_DB: ${DAGSTER_DB}
+        DAGSTER_DB: ${DAGSTER_DB}
     volumes:
       - ./dagster/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
       - ./dagster/dagster.yaml:/opt/dagster/dagster_home/dagster.yaml
