@@ -1,0 +1,125 @@
+version: '0.1'
+
+services:
+  postgres:
+    image: postgres:14
+    restart: always
+    container_name: postgres
+    volumes:
+      - ./postgres_storage:/var/lib/postgresql/data
+      - ./postgres/init.sh:/docker-entrypoint-initdb.d/db_init.sh
+    environment:
+      - MLFLOW_DB=${MLFLOW_DB}
+      - DAGSTER_DB=${DAGSTER_DB}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+    expose:
+      - ${PG_PORT}
+    command: -p ${PG_PORT}
+    networks:
+      - deml
+
+  s3:
+    image: minio/minio
+    restart: always
+    container_name: s3
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ./s3_storege:/data
+    environment:
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY_ID}
+      S3_SECRET_KEY: ${S3_SECRET_ACCESS_KEY}
+    command: server --address ":9000" --console-address ":9001" /data/
+    networks:
+      - deml
+
+  mlflow:
+    image: mlflow_server
+    restart: always
+    build:
+      context: .
+      dockerfile: ./mlflow/Dockerfile
+    container_name: mlflow
+    environment:
+      - BACKEND=postgresql://${PG_USER}:${PG_PASSWORD}@mlops_db:${PG_PORT}/${MLFLOW_DB}
+      - AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
+      - ARTIFACTS=s3://${S3_BUCKET_NAME}
+      - MLFLOW_S3_ENDPOINT_URL=http://s3:9000
+    ports:
+      - ${MLFLOW_PORT}:${MLFLOW_PORT}
+    command:
+      - sh
+      - -c
+      - mlflow server
+        --host 0.0.0.0
+        --port ${MLFLOW_PORT}
+        --serve-artifacts
+        --backend-store-uri $${BACKEND}
+        --artifacts-destination $${ARTIFACTS}
+    depends_on:
+      - postgres
+      - s3
+    networks:
+      - deml
+
+  dagit:
+    build:
+      context: .
+      dockerfile: ./dagster/Dockerfile
+    entrypoint:
+      - dagit
+      - -h
+      - "0.0.0.0"
+      - -p
+      - ${DAGSTER_PORT}
+      - -w
+      - workspace.yaml
+    container_name: dagit
+    environment:
+        MLOPS_DB_USER: ${PG_USER}
+        MLOPS_DB_PASSWORD: ${PG_PASSWORD}
+        MLOPS_DB_PORT: ${PG_PORT}
+        DAGSTER_DB: ${DAGSTER_DB}
+    volumes:
+      - ./dagster/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
+      - ./dagster/dagster.yaml:/opt/dagster/dagster_home/dagster.yaml
+      - /var/run/docker.sock:/var/run/docker.sock
+    expose:
+      - "${DAGSTER_PORT}"
+    ports:
+      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
+    networks:
+      - deml
+    depends_on:
+      - postgres
+
+  dagster_daemons:
+    build:
+      context: .
+      dockerfile: ./dagster/Dockerfile
+    entrypoint:
+      - dagster-daemon
+      - run
+    container_name: dagster_daemons
+    environment:
+        DB_USER: ${MLOPS_DB_USER}
+        DB_PASSWORD: ${MLOPS_DB_PASSWORD}
+        DB_PORT: ${MLOPS_DB_PORT}
+        DAGSTER_DB: ${DAGSTER_DB}
+    volumes:
+      - ./params/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
+      - ./params/dagster.yaml:/opt/dagster/dagster_home/dagster.yaml
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: on-failure
+    networks:
+      - deml
+    depends_on:
+      - postgres
+
+networks:
+  deml:
+    driver: bridge
+    name : 'deml'

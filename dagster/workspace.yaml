@@ -1,0 +1,5 @@
+load_from:
+   - grpc_server:
+       host: app_healthcheck_monitoring
+       port: 4000
+       location_name: "app_healthcheck_monitoring"
