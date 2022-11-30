@@ -1,0 +1,66 @@
+scheduler:
+  module: dagster.core.scheduler
+  class: DagsterDaemonScheduler
+run_coordinator:
+  module: dagster.core.run_coordinator
+  class: QueuedRunCoordinator
+telemetry:
+  enabled: false
+run_launcher:
+  module: dagster_docker
+  class: DockerRunLauncher
+  config:
+    env_vars:
+      - DB_USER
+      - DB_PASSWORD
+      - DAGSTER_DB
+      - DB_PORT
+    network: deml
+    container_kwargs:
+      auto_remove: True
+
+
+run_storage:
+  module: dagster_postgres.run_storage
+  class: PostgresRunStorage
+  config:
+    postgres_db:
+      hostname: postgres
+      username:
+        env: DB_USER
+      password:
+        env: DB_PASSWORD
+      db_name:
+        env: DAGSTER_DB
+      port:
+        env: DB_PORT
+
+schedule_storage:
+  module: dagster_postgres.schedule_storage
+  class: PostgresScheduleStorage
+  config:
+    postgres_db:
+      hostname: postgres
+      username:
+        env: DB_USER
+      password:
+        env: DB_PASSWORD
+      db_name:
+        env: DAGSTER_DB
+      port:
+        env: DB_PORT
+
+event_log_storage:
+  module: dagster_postgres.event_log
+  class: PostgresEventLogStorage
+  config:
+    postgres_db:
+      hostname: postgres
+      username:
+        env: DB_USER
+      password:
+        env: DB_PASSWORD
+      db_name:
+        env: DAGSTER_DB
+      port:
+        env: DB_PORT
