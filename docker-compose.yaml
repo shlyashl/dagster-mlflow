@@ -135,4 +135,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/oo/projects
+      device: "/home/${USER}/projects"
