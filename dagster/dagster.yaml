@@ -1,23 +1,23 @@
-scheduler:
-  module: dagster.core.scheduler
-  class: DagsterDaemonScheduler
-run_coordinator:
-  module: dagster.core.run_coordinator
-  class: QueuedRunCoordinator
-telemetry:
-  enabled: false
-run_launcher:
-  module: dagster_docker
-  class: DockerRunLauncher
-  config:
-    env_vars:
-      - PG_USER
-      - PG_PASSWORD
-      - DAGSTER_DB
-      - PG_PORT
-    network: deml
-    container_kwargs:
-      auto_remove: True
+# scheduler:
+#   module: dagster.core.scheduler
+#   class: DagsterDaemonScheduler
+# run_coordinator:
+#   module: dagster.core.run_coordinator
+#   class: QueuedRunCoordinator
+# telemetry:
+#   enabled: false
+# run_launcher:
+#   module: dagster_docker
+#   class: DockerRunLauncher # <----
+#   config:
+#     env_vars:
+#       - PG_USER
+#       - PG_PASSWORD
+#       - DAGSTER_DB
+#       - PG_PORT
+#     network: deml
+#     container_kwargs:
+#       auto_remove: True
 
 
 run_storage:
