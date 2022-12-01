@@ -117,7 +117,7 @@ services:
       - ./dagster/workspace.yaml:/opt/dagster/dagster_home/workspace.yaml
       - ./dagster/dagster.yaml:/opt/dagster/dagster_home/dagster.yaml
       - /var/run/docker.sock:/var/run/docker.sock
-      - "projects:/opt/dagster/dagster_home/projects"
+      - projects:/opt/dagster/dagster_home/projects
     restart: on-failure
     networks:
       - deml
@@ -135,4 +135,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: "~/projects"
+      device: /home/oo/projects
