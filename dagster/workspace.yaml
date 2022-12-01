@@ -1,2 +1,2 @@
 load_from:
-  - python_file: projects/repository.py
+  - python_file: ~/projects/repository.py
