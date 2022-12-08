@@ -147,10 +147,7 @@ services:
     networks:
       - deml
     depends_on:
-      - postgres
       - mlflow
-      - postgres
-      - s3
       - dagit
       - dagster_daemons
 
