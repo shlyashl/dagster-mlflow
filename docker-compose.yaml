@@ -132,7 +132,9 @@ services:
       network: host
       dockerfile: ./nginx/Dockerfile
     entrypoint:
-      - /run.sh
+      - "/bin/bash"
+      - "-c"
+      - "/var/lib/test/test.sh"
     container_name: nginx
     ports:
       - "85:85"
