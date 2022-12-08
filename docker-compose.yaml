@@ -135,7 +135,7 @@ services:
       - run.sh
     container_name: nginx
     ports:
-      - "80:80"
+      - "85:85"
     environment:
       - FORWARD_HOST=mlflow
       - FORWARD_PORT=5000
