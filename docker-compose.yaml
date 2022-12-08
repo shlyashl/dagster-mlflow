@@ -132,11 +132,9 @@ services:
       network: host
       dockerfile: ./nginx/Dockerfile
     entrypoint:
-      - "/bin/bash"
-      - "-c"
-      - "chmod 755 /run.sh"
       - "/run.sh"
     container_name: nginx
+    user: root
     ports:
       - "85:85"
     environment:
