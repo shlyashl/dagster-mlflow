@@ -138,8 +138,8 @@ services:
     ports:
       - "85:85"
     environment:
-      - FORWARD_HOST=mlflow
-      - FORWARD_PORT=5000
+      - FORWARD_HOST=dagit
+      - FORWARD_PORT=4337
       - BASIC_USERNAME=test
       - BASIC_PASSWORD=test
     volumes:
