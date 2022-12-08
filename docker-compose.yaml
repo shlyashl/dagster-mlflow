@@ -126,6 +126,34 @@ services:
     depends_on:
       - postgres
 
+  nginx:
+    build:
+      context: .
+      network: host
+      dockerfile: ./nginx/Dockerfile
+    entrypoint:
+      - run.sh
+    container_name: nginx
+    ports:
+      - "80:80"
+    environment:
+      - FORWARD_HOST=mlflow
+      - FORWARD_PORT=5000
+      - BASIC_USERNAME=test
+      - BASIC_PASSWORD=test
+    volumes:
+      - ./nginx/run.sh:/run.sh
+      - ./nginx/nginx.conf:/nginx.conf
+    networks:
+      - deml
+    depends_on:
+      - postgres
+      - mlflow
+      - postgres
+      - s3
+      - dagit
+      - dagster_daemons
+
 networks:
   deml:
     driver: bridge
