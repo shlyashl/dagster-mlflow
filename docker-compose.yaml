@@ -134,7 +134,7 @@ services:
     entrypoint:
       - "/bin/bash"
       - "-c"
-      - "/var/lib/test/test.sh"
+      - "/run.sh"
     container_name: nginx
     ports:
       - "85:85"
