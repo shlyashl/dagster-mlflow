@@ -24,8 +24,7 @@ services:
     restart: always
     container_name: s3
     ports:
-      - "9099:9099"
-      - "9001:9001"
+      - "${MLFLOW_AWS_port}:${MLFLOW_AWS_port}"
     volumes:
       - ./s3_storege:/data
     environment:
@@ -51,8 +50,6 @@ services:
       - MLFLOW_AWS_ENDPOINT_URL=http://s3:9099
       - MLFLOW_TRACKING_USERNAME=${MLFLOW_TRACKING_USERNAME}
       - MLFLOW_TRACKING_PASSWORD=${MLFLOW_TRACKING_PASSWORD}
-#    ports:
-#      - ${MLFLOW_PORT}:${MLFLOW_PORT}
     command:
       - sh
       - -c
@@ -94,8 +91,6 @@ services:
       - projects:/opt/dagster/dagster_home/projects
     expose:
       - "${DAGSTER_PORT}"
-#    ports:
-#      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
     networks:
       - deml
     depends_on:
@@ -136,8 +131,8 @@ services:
     container_name: nginx
     user: root
     ports:
-      - "4337:4337"
-      - "5000:5000"
+      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
+      - "${MLFLOW_PORT}:${MLFLOW_PORT}"
     environment:
       - BASIC_USERNAME=${BASIC_USERNAME}
       - BASIC_PASSWORD=${BASIC_PASSWORD}
