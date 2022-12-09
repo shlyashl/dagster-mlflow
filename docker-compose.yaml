@@ -51,8 +51,8 @@ services:
       - MLFLOW_AWS_ENDPOINT_URL=http://s3:9099
       - MLFLOW_TRACKING_USERNAME=${MLFLOW_TRACKING_USERNAME}
       - MLFLOW_TRACKING_PASSWORD=${MLFLOW_TRACKING_PASSWORD}
-    ports:
-      - ${MLFLOW_PORT}:${MLFLOW_PORT}
+#    ports:
+#      - ${MLFLOW_PORT}:${MLFLOW_PORT}
     command:
       - sh
       - -c
@@ -94,8 +94,8 @@ services:
       - projects:/opt/dagster/dagster_home/projects
     expose:
       - "${DAGSTER_PORT}"
-    ports:
-      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
+#    ports:
+#      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
     networks:
       - deml
     depends_on:
