@@ -136,8 +136,8 @@ services:
     environment:
       - BASIC_USERNAME=${BASIC_USERNAME}
       - BASIC_PASSWORD=${BASIC_PASSWORD}
-      - MLFLOW_PORT=${MLFLOW_PORT}
-      - DAGSTER_PORT=${DAGSTER_PORT}
+      - MLFLOW_PORT=$${MLFLOW_PORT}
+      - DAGSTER_PORT="${DAGSTER_PORT}"
     volumes:
       - ./nginx/run.sh:/run.sh
       - ./nginx/nginx.conf:/nginx.conf
