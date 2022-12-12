@@ -163,7 +163,7 @@ services:
       - web-root:/var/www/html
     depends_on:
       - nginx
-    command: certonly --webroot --webroot-path=/var/www/html --email chubuvkomn@proton.me -v --agree-tos --no-eff-email --staging -d oo-serv.ru -d www.oo-serv.ru
+    command: certonly --webroot --webroot-path/-w=/var/www/html --email chubuvkomn@proton.me -v --agree-tos --no-eff-email --staging -d oo-serv.ru -d www.oo-serv.ru
 
 networks:
   deml:
