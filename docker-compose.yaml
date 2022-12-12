@@ -131,10 +131,10 @@ services:
     container_name: nginx
     user: root
     ports:
-      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
-      - "${MLFLOW_PORT}:${MLFLOW_PORT}"
+#      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
+#      - "${MLFLOW_PORT}:${MLFLOW_PORT}"
       - "80:80"
-      - "443:443"
+#      - "443:443"
     environment:
       - BASIC_USERNAME=${BASIC_USERNAME}
       - BASIC_PASSWORD=${BASIC_PASSWORD}
