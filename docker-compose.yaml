@@ -141,7 +141,7 @@ services:
     volumes:
       - ./nginx/run.sh:/run.sh
       - ./nginx/nginx.conf:/nginx.conf
-      - ./nginx/html:/var/www/html
+      - web-root:/var/www/html
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
     networks:
@@ -158,7 +158,7 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
-      - ./nginx/html:/var/www/html
+      - web-root:/var/www/html
     networks:
       - deml
     depends_on:
@@ -179,3 +179,9 @@ volumes:
       device: ${PRG_PATH}
   certbot-etc:
   certbot-var:
+  web-root:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./nginx/html
