@@ -141,7 +141,7 @@ services:
     volumes:
       - ./nginx/run.sh:/run.sh
       - ./nginx/nginx.conf:/nginx.conf
-      - ./nginx/html:web-root:/var/www/html
+      - ./nginx/html:/var/www/html
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
     networks:
