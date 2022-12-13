@@ -157,6 +157,7 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
+      - ./nginx/html:/var/log/letsencrypt
       - web-root:/var/www/html
     depends_on:
       - nginx
