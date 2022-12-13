@@ -156,7 +156,6 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
-    user: root
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
