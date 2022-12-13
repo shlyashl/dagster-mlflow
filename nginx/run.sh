@@ -4,6 +4,6 @@
 envsubst < nginx.conf > /etc/nginx/conf.d/default.conf
 
 # htpasswd for basic authentication
-#htpasswd -c -b /etc/nginx/.htpasswd $BASIC_USERNAME $BASIC_PASSWORD
+htpasswd -c -b /etc/nginx/.htpasswd $BASIC_USERNAME $BASIC_PASSWORD
 
 nginx -g "daemon off;"
