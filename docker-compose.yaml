@@ -129,19 +129,17 @@ services:
     entrypoint:
       - "/run.sh"
     container_name: nginx
-    user: root
+    user: oo
     ports:
-      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
-      - "${MLFLOW_PORT}:${MLFLOW_PORT}"
+#      - "${DAGSTER_PORT}:${DAGSTER_PORT}"
+#      - "${MLFLOW_PORT}:${MLFLOW_PORT}"
       - "80:80"
-      - "443:443"
     environment:
       - BASIC_USERNAME=${BASIC_USERNAME}
       - BASIC_PASSWORD=${BASIC_PASSWORD}
       - MLFLOW_ENPOINT_URL=${MLFLOW_ENPOINT_URL}
       - DAGSTER_ENPOINT_URL=${DAGSTER_ENPOINT_URL}
     volumes:
-      - ./nginx/run.sh:/run.sh
       - ./nginx/nginx.conf:/nginx.conf
       - web-root:/var/www/html
       - certbot-etc:/etc/letsencrypt
@@ -184,4 +182,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/oo/html
+      device: /home/oo/dagster-mlflow/nginx/html
