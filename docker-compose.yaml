@@ -129,7 +129,6 @@ services:
     entrypoint:
       - "/app/run.sh"
     container_name: nginx
-    user: root
     ports:
       - "${DAGSTER_PORT}:${DAGSTER_PORT}"
       - "${MLFLOW_PORT}:${MLFLOW_PORT}"
