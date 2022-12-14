@@ -141,7 +141,7 @@ services:
       - DAGSTER_ENPOINT_URL=${DAGSTER_ENPOINT_URL}
     volumes:
       - ./nginx/nginx.conf:/nginx.conf
-      - ./nginx/run.sh:/run.sh:rwx
+      - ./nginx/run.sh:/run.sh:delegated
       - web-root:/var/www/html
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
