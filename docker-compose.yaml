@@ -127,7 +127,7 @@ services:
       network: host
       dockerfile: ./nginx/Dockerfile
     entrypoint:
-      - "/app/run.sh"
+      - "/run.sh"
     container_name: nginx
     ports:
       - "${DAGSTER_PORT}:${DAGSTER_PORT}"
@@ -141,7 +141,7 @@ services:
       - DAGSTER_ENPOINT_URL=${DAGSTER_ENPOINT_URL}
     volumes:
       - ./nginx/nginx.conf:/nginx.conf
-      - ./nginx/run.sh:/app/run.sh
+      - ./nginx/run.sh:/run.sh:rw
       - web-root:/var/www/html
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
