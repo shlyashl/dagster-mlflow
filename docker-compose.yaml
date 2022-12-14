@@ -127,7 +127,7 @@ services:
       network: host
       dockerfile: ./nginx/Dockerfile
     entrypoint:
-      - "/run.sh"
+      - "/app/run.sh"
     container_name: nginx
     ports:
       - "${DAGSTER_PORT}:${DAGSTER_PORT}"
