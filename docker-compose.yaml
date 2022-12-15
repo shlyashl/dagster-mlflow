@@ -31,6 +31,9 @@ services:
     environment:
       MINIO_ROOT_USER: ${AWS_ACCESS_KEY_ID}
       MINIO_ROOT_PASSWORD: ${AWS_SECRET_ACCESS_KEY}
+    expose:
+      - "${MLFLOW_AWS_port}"
+      - "${MLFLOW_AWS_CONSOLE_port}"
     command: server --address ":9091" --console-address ":9099" /data/
     networks:
       - deml
