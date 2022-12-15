@@ -1,10 +1,56 @@
+<!DOCTYPE html>
 <html>
-    <header>
+    <head>
         <title>
-            Ok...
+            O_o
         </title>
-    </header>
-    <body>
-    <p>Vrode ok</p>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .gradient-background {
+              background: linear-gradient(273deg,#bfa70f,#d1082e,#d08c04,#7db398,#eb32c3);
+              background-size: 150% 100%;
+              animation: gradient-animation 50s ease infinite;
+            }
+
+            @keyframes gradient-animation {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+            h1 {
+                font-family:Arial,
+                sans-serif;font-size:80px;
+                color:#ffffff;
+                padding-left:40px;
+                line-height:30px;
+            }
+            a, p {
+                font-family:Arial,
+                sans-serif;font-size:20px;
+                font-style:normal;
+                font-weight:normal;
+                color:#ffffff;
+                padding-left:22px;
+                padding-top:40px;
+                line-height:35px;
+            }
+
+        </style>
+    </head>
+    <body class="gradient-background">
+        <h1>O_o</h1>
+        <p>
+            <a href="/dagster">dagster</a><br/>
+            <a href="/s3">s3</a><br/>
+            <a href="/mlflow">mlflow</a><br/>
+            <a href="http://45.87.104.115:8123/">clickhouse</a>
+        </p>
+
     </body>
 </html>
