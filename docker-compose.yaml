@@ -44,7 +44,7 @@ services:
     image: mlflow_server
     restart: always
     ports:
-      - "${MLFLOW_AWS_port}:${MLFLOW_AWS_port}"
+      - "${MLFLOW_PORT}:${MLFLOW_PORT}"
     build:
       context: .
       network: host
