@@ -36,7 +36,7 @@ services:
     expose:
       - "${MLFLOW_AWS_port}"
       - "${MLFLOW_AWS_CONSOLE_port}"
-    command: server --address ":9091" --console-address ":9099" /data/
+    command: server --address ":9091" --console-address ":9098" /data/
     networks:
       - deml
 
