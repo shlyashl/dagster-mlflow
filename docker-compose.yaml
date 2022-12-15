@@ -147,6 +147,7 @@ services:
       - BASIC_PASSWORD=${BASIC_PASSWORD}
       - MLFLOW_ENPOINT_URL=${MLFLOW_ENPOINT_URL}
       - DAGSTER_ENPOINT_URL=${DAGSTER_ENPOINT_URL}
+      - MLFLOWAWS_ENPOINT_URL=${MLFLOWAWS_ENPOINT_URL}
     volumes:
       - ./nginx/nginx.conf:/nginx.conf
       - web-root:/var/www/html
