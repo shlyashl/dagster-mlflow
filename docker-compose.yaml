@@ -5,6 +5,7 @@ services:
     image: postgres:14
     restart: always
     container_name: postgres
+    user: ${PG_USER}
     ports:
       - "${PG_PORT}:${PG_PORT}"
     volumes:
