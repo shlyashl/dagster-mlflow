@@ -5,6 +5,7 @@ services:
     image: postgres:14
     restart: always
     container_name: postgres
+    user: root
     volumes:
       - ./postgres_storage:/var/lib/postgresql/data
       - ./postgres/db_init.sh:/docker-entrypoint-initdb.d/db_init.sh
