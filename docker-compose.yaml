@@ -5,12 +5,11 @@ services:
     image: postgres:14
     restart: always
     container_name: postgres
-    user: ${PG_USER}
     ports:
       - "${PG_PORT}:${PG_PORT}"
     volumes:
       - ./postgres_storage:/var/lib/postgresql/data
-      - ./postgres/db_init.sh:/docker-entrypoint-initdb.d/db_init.sh
+      - ./postgres/db_init.sh:/docker-entrypoint-initdb.d/db_init.sh:rw
     environment:
       - MLFLOW_DB=${MLFLOW_DB}
       - DAGSTER_DB=${DAGSTER_DB}
