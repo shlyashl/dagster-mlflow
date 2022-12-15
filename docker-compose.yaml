@@ -159,16 +159,16 @@ services:
       - dagit
       - dagster_daemons
 
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt:rw
-      - certbot-var:/var/lib/letsencrypt:rw
-      - web-root:/var/www/html
-    depends_on:
-      - nginx
-    command: certonly --webroot --webroot-path=/var/www/html --email ay-ya@ya.ru --agree-tos --no-eff-email --force-renewal -d oo-serv.ru -d www.oo-serv.ru -d dagit.oo-serv.ru -d mlflow.oo-serv.ru -d s3.oo-serv.ru -d minio.oo-serv.ru
+#  certbot:
+#    image: certbot/certbot
+#    container_name: certbot
+#    volumes:
+#      - certbot-etc:/etc/letsencrypt:rw
+#      - certbot-var:/var/lib/letsencrypt:rw
+#      - web-root:/var/www/html
+#    depends_on:
+#      - nginx
+#    command: certonly --webroot --webroot-path=/var/www/html --email ay-ya@ya.ru --agree-tos --no-eff-email --force-renewal -d oo-serv.ru -d www.oo-serv.ru -d dagit.oo-serv.ru -d mlflow.oo-serv.ru -d s3.oo-serv.ru -d minio.oo-serv.ru
 
 networks:
   deml:
