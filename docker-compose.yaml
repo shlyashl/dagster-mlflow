@@ -5,6 +5,8 @@ services:
     image: postgres:14
     restart: always
     container_name: postgres
+    ports:
+      - "${PG_PORT}:${PG_PORT}"
     volumes:
       - ./postgres_storage:/var/lib/postgresql/data
       - ./postgres/db_init.sh:/docker-entrypoint-initdb.d/db_init.sh
@@ -41,6 +43,8 @@ services:
   mlflow:
     image: mlflow_server
     restart: always
+    ports:
+      - "${MLFLOW_AWS_port}:${MLFLOW_AWS_port}"
     build:
       context: .
       network: host
@@ -54,6 +58,8 @@ services:
       - MLFLOW_AWS_ENDPOINT_URL=http://s3:9099
       - MLFLOW_TRACKING_USERNAME=${MLFLOW_TRACKING_USERNAME}
       - MLFLOW_TRACKING_PASSWORD=${MLFLOW_TRACKING_PASSWORD}
+    expose:
+      - "${MLFLOW_PORT}"
     command:
       - sh
       - -c
