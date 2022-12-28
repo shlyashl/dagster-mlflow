@@ -1,23 +1,23 @@
 FROM python:3.10-slim
 
 RUN pip install \
-    dagster \
-    dagster-graphql \
-    dagit \
-    dagster-postgres \
-    dagster-docker
-    certifi \
-    charset-normalizer \
-    idna \
-    numpy \
-    panda \
-    pyaml-env \
-    python-dateutil \
-    pytz \
-    PyYAML \
-    requests \
-    six \
-    urllib3
+        dagster \
+        dagster-graphql \
+        dagit \
+        dagster-postgres \
+        dagster-docker
+        certifi \
+        charset-normalizer \
+        idna \
+        numpy \
+        panda \
+        pyaml-env \
+        python-dateutil \
+        pytz \
+        PyYAML \
+        requests \
+        six \
+        urllib3
 
 ENV DAGSTER_HOME=/opt/dagster/dagster_home/
 
