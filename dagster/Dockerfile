@@ -17,7 +17,8 @@ RUN pip install \
         PyYAML==5.4.1 \
         requests==2.28.1 \
         six==1.16.0 \
-        urllib3==1.26.12
+        urllib3==1.26.12 \
+        aiohttp==3.8.3
 
 ENV DAGSTER_HOME=/opt/dagster/dagster_home/
 
